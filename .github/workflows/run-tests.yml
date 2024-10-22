@@ -24,11 +24,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Ensure browsers are installed
-      run: python -m playwright install --with-deps
+    - name: Ensure Chrome browser is installed
+      run: |
+        python -m playwright install chromium
+        python -m playwright install-deps chromium
 
     - name: Run tests
-      run: pytest --tracing=retain-on-failure
+      run: pytest --browser chromium --tracing=retain-on-failure
 
     - uses: actions/upload-artifact@v4
       if: always()
