@@ -30,7 +30,7 @@ jobs:
         python -m playwright install-deps chromium
 
     - name: Run tests
-      run: pytest --browser chromium --tracing=retain-on-failure
+      run: pytest --browser chromium --tracing=retain-on-failure --output=test-results/
 
     - uses: actions/upload-artifact@v4
       if: always()
